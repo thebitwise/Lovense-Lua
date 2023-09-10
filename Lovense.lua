@@ -2,7 +2,7 @@ util.require_natives("2944b", "g")
 local root = menu.my_root()
 
 script_name = "Lovense Lua"
-local debug = true
+local debug = false
 
 local function notify(text) 
     util.toast("[LOVENSE] " .. text)
