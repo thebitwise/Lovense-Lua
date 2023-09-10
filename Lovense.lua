@@ -2,7 +2,7 @@ util.require_natives("2944b", "g")
 local root = menu.my_root()
 
 script_name = "Lovense Lua"
-local debug = false
+local debug = true
 
 local function notify(text) 
     util.toast("[LOVENSE] " .. text)
@@ -184,6 +184,7 @@ local function get_all_toys()
     end, function()
         debug_notify("Failed to find toys. This is possibly just a blip, but if this issue continues, check your connection.")
     end)
+    async_http.prefer_ipv6()
     async_http.dispatch()
 end
 
@@ -298,6 +299,7 @@ local function send_command(cmd, toy_name, toy_id, host, port, the_action, stren
         notify("SEND CMD PAYLOAD: " .. payload)
     end
     async_http.set_post("application/json", payload)
+    async_http.prefer_ipv6()
     async_http.dispatch()
 end
 
@@ -651,7 +653,7 @@ root:action("Emergency stop all functions", {}, "Sends your toys a \"stop\" comm
     stop_all_functions()
 end)
 
-menu.hyperlink(menu.my_root(), "Join Discord", "https://discord.gg/N6pZcACDZ8", "")
+root:hyperlink('Join Discord', 'https://discord.gg/zZ2eEjj88v', '')
 
 -- simultaneous stacks
 
@@ -906,6 +908,4 @@ util.create_tick_handler(function()
     end
 end)
 
-menu.my_root():divider('')
-menu.my_root():hyperlink('Join Discord', 'https://discord.gg/zZ2eEjj88v', '')
 
