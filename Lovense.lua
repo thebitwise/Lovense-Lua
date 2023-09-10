@@ -228,6 +228,9 @@ local function send_command(cmd, toy_name, toy_id, host, port, the_action, stren
     local duration = 0
     local all_commands = {}
     if cmd == "Function" then
+        if the_action == nil then 
+            return
+        end
         if strength ~= nil and strength ~= 0 and the_action ~= "Stop" then
             add_current_command(the_action, strength, length)
             debug_notify("Command added to queue, setting duration")
@@ -895,8 +898,6 @@ chat.on_message(function(sender, reserved, text, team_chat, networked, is_auto)
     end
 end)
 
-
--- DEBUG
 util.create_tick_handler(function()
     if debug then
         for index, command in pairs(current_commands) do 
@@ -904,3 +905,7 @@ util.create_tick_handler(function()
         end
     end
 end)
+
+menu.my_root():divider('')
+menu.my_root():hyperlink('Join Discord', 'https://discord.gg/zZ2eEjj88v', '')
+
