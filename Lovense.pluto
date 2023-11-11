@@ -427,7 +427,7 @@ local last_hp = GET_ENTITY_HEALTH(players.user_ped())
 local last_vibration_strength = 0
 util.create_tick_handler(function()
     if do_vibrate then
-        pluto_switch vibe_mode do 
+        switch vibe_mode do 
             case 1:
                 if not is_vibration_active or vibration_strength ~= last_vibration_strength then
                     vibrate(vibration_strength, 0, 0, 0)
@@ -534,7 +534,7 @@ end, false)
 local last_pump_tightness = 0
 util.create_tick_handler(function()
     if do_pump then
-        pluto_switch pump_mode do 
+        switch pump_mode do 
             case 1:
                 pump(pump_tightness, 0, 0, 0)
                 util.yield(3000)
@@ -610,7 +610,7 @@ local last_car_speed = 0
 local last_rotation_speed = 0
 util.create_tick_handler(function()
     if do_rotate then
-        pluto_switch rotate_mode do 
+        switch rotate_mode do 
             case 1:
                 if not is_rotation_active or last_rotation_speed ~= rotation_speed then
                     rotate(rotation_speed, 0, 0, 0)
@@ -878,7 +878,7 @@ chat.on_message(function(sender, reserved, text, team_chat, networked, is_auto)
             chat.send_message("> Invalid command", false, true, true)
             return 
         end
-        pluto_switch p1 do 
+        switch p1 do 
             case "vibrate":
                 if not menu.get_value(vibration_root_toggle) then
                     chat.send_message("> Vibration command sent for " .. duration .. " seconds at strength of " .. strength, false, true, true)
